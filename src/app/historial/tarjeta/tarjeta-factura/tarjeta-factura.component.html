@@ -1,0 +1,51 @@
+<div class="container">
+    <h1>Factura</h1>
+  <form>
+    <div class="row">
+      <div class="col-5">
+        <label class="form-label">Nombre Cliente</label>
+        <input type="text" class="form-control" name="nameClient"  [(ngModel)]="factura.nameClient">
+      </div>
+      <div class="col-5">
+        <label class="form-label">Documento</label>
+        <input type="text" class="form-control" name="documento" [(ngModel)]="factura.documento" />
+      </div>
+      <div class="col-2">
+        <label class="form-label">Direccion</label>
+        <input type="text" class="form-control" name="direccion" [(ngModel)]="factura.direccion" />
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col">
+         <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">IVA</th>
+        <th scope="col">Total IVA</th>
+        <th scope="col">Total sin IVA</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr  *ngFor="let p of productos">
+        <td>{{p.name}}</td>
+        <td>{{p.description}}</td>
+        <td>{{p.cantidad}}</td>
+        <td>{{p.precioU}}</td>
+        <td>{{p.iva}}</td>
+        <td>{{p.totalsinIVA}}</td>
+        <td>{{p.totalIVA}}</td>
+        <td>{{p.total}}</td> 
+      </tr> 
+    </tbody>
+  </table>
+    </div>
+  </div>
+
+ 
+</div>

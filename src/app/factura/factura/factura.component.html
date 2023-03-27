@@ -1,0 +1,81 @@
+<div class="container m-5">
+  <h1>Factura</h1>
+
+  <form [formGroup]="myForm">
+    <div class="row">
+      <div class="col-3">
+        <label class="form-label">Nombre Cliente*</label>
+        <input type="text" class="form-control"  formControlName="nameClient"/>
+      </div>
+      <div class="col-3">
+        <label class="form-label">Documento*</label>
+        <input type="text" class="form-control" formControlName="documento" />
+      </div>
+      <div class="col-3">
+        <label class="form-label">Direccion*</label>
+        <input type="text" class="form-control"  formControlName="direccion"  />
+      </div>
+    </div>
+
+    <div class="col-4 mt-5 p-3">
+      <button (click)="openModal()"  [disabled]="myForm.invalid" type="button" class="btn btn-outline-light">
+        Agregar Producto
+      </button>
+    </div>
+  </form>
+
+  <div class="row mt-4">
+    <label class="form-label">TOTAL CON IVA</label>
+
+    <div class="col-3">
+      <input
+        type="text"
+        [(ngModel)]="totalFactura"
+        class="form-control"
+        readonly
+      />
+    </div>
+
+    <div class="col-6">
+      <button type="button" [routerLink]="['/home']" (click)="enviarFactura()" class="btn btn-primary btn-lg" [disabled]="myForm.invalid && banderTable">FACTURAR</button>
+    </div>
+  </div>
+
+
+
+ <div *ngIf="banderTable">
+  <h3 m-2>Productos a comprar:</h3>
+<div class="row mt-5">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio Unitario</th>
+              <th scope="col">IVA</th>
+              <th scope="col">Total IVA</th>
+              <th scope="col">Total sin IVA</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of registroP">
+              <td>{{ p.name }}</td>
+              <td>{{ p.description }}</td>
+              <td>{{ p.cantidad }}</td>
+              <td>{{ p.precioU }}</td>
+              <td>{{ p.iva | porcentaje }}</td>
+              <td>{{ p.totalIVA}}</td>
+              <td>{{ p.totalsinIVA}}</td>
+              <td>{{ p.total }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+ </div>
+    
+
+</div>
